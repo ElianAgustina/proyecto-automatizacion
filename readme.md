@@ -27,11 +27,3 @@ El reporte HTML se genera automáticamente en:
 ```text
 reports/reporte.html
 ```
-
-## Prueba
-
-La prueba valida el inicio de sesión exitoso en **SauceDemo** utilizando Selenium y verifica:
-
-* URL de inventario
-* Logo "Swag Labs"
-* Título "Products"
