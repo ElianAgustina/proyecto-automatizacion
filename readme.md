@@ -1,4 +1,4 @@
-# Pre-entrega - Automatización Web
+# Proyecto - Automatización Web
 
 Proyecto de automatización de pruebas web utilizando **Python, Selenium y Pytest**.
 
