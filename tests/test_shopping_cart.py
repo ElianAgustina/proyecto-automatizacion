@@ -1,4 +1,5 @@
 from selenium import webdriver
+# el by es para poder usar los selectores de selenium
 from selenium.webdriver.common.by import By
 
 
