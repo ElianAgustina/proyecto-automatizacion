@@ -41,7 +41,7 @@ def test_inventory():
         
         assert menu.is_displayed()
         
-        #Verificar filtro
+        #verificar filtro
         filter = driver.find_element(By.CLASS_NAME,"product_sort_container")
         
         assert filter.is_displayed
