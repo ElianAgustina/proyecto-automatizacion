@@ -12,11 +12,14 @@ def test_login_success(driver):
     driver.get("https://www.saucedemo.com/")
     # Llamar al método de inicio de sesión con las credenciales correctas
     login_page.login("standard_user", "secret_sauce") 
+
     # Validar URL
     assert "/inventory.html" in driver.current_url
+
     # Validar logo
     logo = driver.find_element(By.CLASS_NAME, "app_logo")
     assert logo.text == "Swag Labs"
+    
     # Validar título
     title = driver.find_element(By.CSS_SELECTOR, "[data-test='title']")
     assert title.text == "Products"
