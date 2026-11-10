@@ -1,14 +1,18 @@
 from selenium.webdriver.common.by import By
 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 class LoginPage:
     # self es una referencia al objeto actual de la clase, y se utiliza para acceder a los atributos y métodos de la clase
     def __init__(self, driver):
         #driver es el objeto que representa el navegador y se pasa como parámetro al constructor de la clase
         self.driver = driver
+        self.wait = WebDriverWait(driver, 10)  # Espera explícita de 10 segundos
 
     # definir las acciones que se pueden realizar en la página de inicio
     def enter_username(self, username):
-        self.driver.find_element(By.ID, "user-name").send_keys(username)
+        self.wait.until(EC.presence_of_element_located((By.ID, "user-name"))).send_keys(username)
 
     def enter_password(self, password):
         self.driver.find_element(By.ID, "password").send_keys(password)
