@@ -24,3 +24,8 @@ class LoginPage:
         self.enter_username(username)
         self.enter_password(password)
         self.click_login_button()
+
+    def get_error_message(self):
+        text_error = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR,".error > h3")))
+        return text_error.text
+
