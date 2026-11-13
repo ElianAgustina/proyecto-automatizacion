@@ -86,10 +86,14 @@ def test_delete_user(base_url, headers):
     # Obtener el código de estado de la respuesta
     codigo = response.status_code
 
-    assert 'application/json' not in response.headers.get('Content-Type', '')  
-
+    # NIVEL 1: Validar que el código de estado sea 204 (No Content)
     assert codigo == 204  # Verificar que el código de estado sea 204 (No Content)
+    # NIVEL 2: Verificar que el encabezado 'Content-Type' no esté presente
+    assert 'application/json' not in response.headers
+    # NIVEL 3: Verificar que el contenido de la respuesta esté vacío
+    assert response.content == b''  # Verificar que el contenido de la respuesta esté vacío
 
+    assert response.elapsed.total_seconds() < 2  # Verificar que el tiempo de respuesta
 
 '''
 # x-api-key: pub_5bca5ffc8772df976fcf8970168a1ad219ad499c472afbba2f27085fa4b4ef7d
