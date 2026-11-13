@@ -1,16 +1,11 @@
 import requests
 
-    # Endpoint URL for the API request
-url = "https://reqres.in/api/users"
-headers = {
-        "x-api-key": "pub_5bca5ffc8772df976fcf8970168a1ad219ad499c472afbba2f27085fa4b4ef7d"
-        }
-def test_get_user():
+def test_get_user(base_url, headers):
 
     # Headers para la solicitud, incluyendo la clave de API
 
     # Realizar la solicitud GET a la API
-    response = requests.get(f"{url}/2", headers=headers)
+    response = requests.get(f"{base_url}/users/2", headers=headers)
 
     # Obtener el código de estado de la respuesta
     codigo = response.status_code
@@ -43,7 +38,7 @@ def test_get_user():
     assert response.elapsed.total_seconds() < 2  # Verificar que el tiempo de respuesta
     
 
-def test_create_user():
+def test_create_user(base_url, headers):
     # Datos del nuevo usuario a crear
     new_user = {
         "first_name": "Felipe",
@@ -53,7 +48,7 @@ def test_create_user():
     }
 
     # Realizar la solicitud POST a la API para crear un nuevo usuario
-    response = requests.post(url, headers=headers, json=new_user)
+    response = requests.post(f"{base_url}/users", headers=headers, json=new_user)
 
     # Obtener el código de estado de la respuesta
     codigo = response.status_code
@@ -82,28 +77,20 @@ def test_create_user():
     # NIVEL 5 : TIEMPO DE RESPUESTA
     assert response.elapsed.total_seconds() < 2  # Verificar que el tiempo de respuesta
 
-'''
-"""
-{
-    "data":{
-        "id":2,
-        "email":"jose.montezuma@bue.edu.ar",
-        "nombre":"Jose",
-        "apellido":"Montezuma"
-    },
-    "support":{}
-}
-"""
-
-def test_delete_user():
+def test_delete_user(base_url, headers):
 
     user_id = 1 # Lista de usuarios a eliminar
 
-    response = requests.delete(f"{url}/{user_id}", headers=headers)
+    response = requests.delete(f"{base_url}/users/{user_id}", headers=headers)
 
-    print (response.status_code)
+    # Obtener el código de estado de la respuesta
+    codigo = response.status_code
 
-    assert response.status_code == 204
+    assert 'application/json' not in response.headers.get('Content-Type', '')  
 
+    assert codigo == 204  # Verificar que el código de estado sea 204 (No Content)
+
+
+'''
 # x-api-key: pub_5bca5ffc8772df976fcf8970168a1ad219ad499c472afbba2f27085fa4b4ef7d
 '''
