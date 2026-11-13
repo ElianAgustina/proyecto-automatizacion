@@ -33,3 +33,18 @@ class InventoryPage:
     def is_filter_displayed(self):
         filter = self.driver.find_element(By.CLASS_NAME,"product_sort_container")
         return filter.is_displayed()
+
+    def add_product_to_cart(self,name_product):
+        products = self.get_products()
+        for product in products:
+            name = product.find_element(By.CLASS_NAME,"inventory_item_name").text
+            if name == name_product:
+                product.find_element(By.TAG_NAME,"button").click()
+                return
+        raise AssertionError(f"Product with name '{name_product}' not found in the inventory.") 
+
+    def count_products(self):
+        return self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "shopping_cart_badge")))      
+
+    def go_to_cart(self):
+        self.wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "shopping_cart_link"))).click()

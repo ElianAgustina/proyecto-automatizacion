@@ -4,54 +4,36 @@ import pytest
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from conftest import driver
+from pages.login_page import LoginPage
+from pages.inventory_page import InventoryPage
+from pages.cart_page import CartPage
+from utils.reader import read_products_json
 
 
-def test_cart():
-    driver = webdriver.Chrome()
-     
-    # Espera explícita de 10 segundos
-    wait = WebDriverWait(driver, 10)  
-   
-    try:
-        # Abrir la página de inicio de sesión
-        driver.get("https://www.saucedemo.com/")
+def test_cart(driver):
+    login_page = LoginPage(driver)
+    inventory_page = InventoryPage(driver)
+    cart_page = CartPage(driver)
 
+    # Abrir la página de inicio de sesión
+    driver.get("https://www.saucedemo.com/")
+    login_page.login("standard_user", "secret_sauce")
 
-        # Encontrar los elementos
-        wait.until(EC.visibility_of_element_located((By.ID, "user-name"))).send_keys("standard_user")
-        password = driver.find_element(By.ID, "password")
-        button_login = driver.find_element(By.ID, "login-button")
+    # Obtener el primer producto del archivo JSON
+    products = read_products_json()[0] 
+    print(f"Producto a agregar al carrito: {products['name']} - Precio: {products['price']}")
 
+    # Agregar el producto al carrito desde el json
+    inventory_page.add_product_to_cart(products["name"])
 
-        # Ingresar credenciales
-        password.send_keys("secret_sauce")
-        button_login.click()
-       
-        # obtener el primer producto de la lista para agregarlo al carrito y validar que se agrego correctamente
-        first_product = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "inventory_item")))
-       
-        # obtener el nombre del producto para validar que se agrego correctamente al carrito
-        name_product = first_product.find_element(By.CLASS_NAME, "inventory_item_name").text
-       
-        # obtener el boton de agregar al carrito del primer producto
-        button_add = first_product.find_element(By.TAG_NAME, "button")
-       
-        # hacer click en el boton de agregar al carrito
-        button_add.click()
-       
-        # validar que el contador del carrito se actualizo a 1
-        counter_car = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "shopping_cart_badge")))      
+    assert inventory_page.count_products().text == "1"
 
+        # Ir al carrito
+    inventory_page.go_to_cart()
 
-        assert counter_car.text == "1"
-       
-        # hacer click en el carrito para validar que el producto se agrego correctamente
-        wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "shopping_cart_link"))).click()
-       
-        # validar que el producto agregado al carrito es el mismo que se agrego
-        product_car = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "inventory_item_name"))).text
-        assert product_car == name_product
+        # Verificar que el producto agregado al carrito sea el mismo que se obtuvo del archivo JSON
+    assert cart_page.get_name_product() == products["name"]
 
-
-    finally:
-        driver.quit()
+    #validar que el precio del producto en el carrito sea el mismo que se obtuvo del archivo JSON
+    assert cart_page.get_price_product() == products["price"]
