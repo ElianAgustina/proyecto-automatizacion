@@ -1,0 +1,15 @@
+2026-11-14 15:24:35,142 INFO talento_tech - Testing cart functionality.
+2026-11-14 15:24:36,073 INFO talento_tech - Product added to cart.
+2026-11-14 15:24:36,145 INFO talento_tech - Navigated to cart.
+2026-11-14 15:24:36,176 INFO talento_tech - Product name validated.
+2026-11-14 15:24:36,197 INFO talento_tech - Product price validated.
+2026-11-14 15:24:39,576 INFO talento_tech - Testing inventory functionality.
+2026-11-14 15:24:40,399 INFO talento_tech - Retrieved 6 products.
+2026-11-14 15:24:40,504 INFO talento_tech - Inventory functionality validated.
+2026-11-14 15:24:43,959 INFO talento_tech - Testing login with username: standard_user
+2026-11-14 15:24:44,771 INFO talento_tech - Login successful.
+2026-11-14 15:24:44,815 INFO talento_tech - Products title validated.
+2026-11-14 15:24:48,274 INFO talento_tech - Testing login with username: admin
+2026-11-14 15:24:49,268 INFO talento_tech - Login failed as expected.
+2026-11-14 15:24:52,664 INFO talento_tech - Testing login with username: jose
+2026-11-14 15:24:53,540 INFO talento_tech - Login failed as expected.
