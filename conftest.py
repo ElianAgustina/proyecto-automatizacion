@@ -7,6 +7,7 @@ import pytest
 import pytest_html
 from selenium import webdriver
 import pathlib
+import base64
 
 # esto es un fixture de pytest que se encarga de crear y cerrar el navegador antes y después de cada prueba
 @pytest.fixture
@@ -40,3 +41,8 @@ def pytest_runtest_makereport(item, call):
         file.mkdir(parents=True, exist_ok=True)
         screenshot_file = file / f"{item.name}.png"
         driver.save_screenshot(str(screenshot_file))
+
+        imagen_base64 = base64.b64encode(screenshot_file.read_bytes()).decode("utf-8")
+        report.extra = [
+            pytest_html.extras.png(imagen_base64,name="Screenshot")
+        ]
