@@ -1,0 +1,11 @@
+2026-11-20 01:10:20,146 INFO talento_tech - Testing login functionality.
+2026-11-20 01:10:20,147 INFO talento_tech - Testing login with username: standard_user
+2026-11-20 01:10:21,314 INFO talento_tech - Login successful.
+2026-11-20 01:10:21,373 INFO talento_tech - Products title validated.
+2026-11-20 01:10:21,373 INFO talento_tech - Login test completed successfully.
+2026-11-20 01:10:25,281 INFO talento_tech - Testing login functionality.
+2026-11-20 01:10:25,282 INFO talento_tech - Testing login with username: admin
+2026-11-20 01:10:26,351 INFO talento_tech - Login failed as expected.
+2026-11-20 01:10:30,116 INFO talento_tech - Testing login functionality.
+2026-11-20 01:10:30,117 INFO talento_tech - Testing login with username: jose
+2026-11-20 01:10:31,197 INFO talento_tech - Login failed as expected.

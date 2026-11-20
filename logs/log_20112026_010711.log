@@ -1,0 +1,29 @@
+2026-11-20 01:07:11,784 INFO talento_tech - Testing GET user functionality.
+2026-11-20 01:07:12,049 INFO talento_tech - Retrieved user data: {'id': 2, 'email': 'janet.weaver@reqres.in', 'first_name': 'Janet', 'last_name': 'Weaver', 'avatar': 'https://reqres.in/img/faces/2-image.jpg'}
+2026-11-20 01:07:12,049 INFO talento_tech - GET user test completed successfully.
+2026-11-20 01:07:12,061 INFO talento_tech - Testing create user functionality.
+2026-11-20 01:07:12,251 INFO talento_tech - User created with ID: 684
+2026-11-20 01:07:12,252 INFO talento_tech - User data validated: Felipe Carillanca - felipe.carillanca@reqres.in
+2026-11-20 01:07:12,257 INFO talento_tech - Create user test completed successfully.
+2026-11-20 01:07:12,266 INFO talento_tech - Testing delete user functionality.
+2026-11-20 01:07:12,457 INFO talento_tech - User with ID 1 deleted successfully.
+2026-11-20 01:07:14,360 INFO talento_tech - Testing cart functionality.
+2026-11-20 01:07:15,839 INFO talento_tech - Product added to cart.
+2026-11-20 01:07:15,982 INFO talento_tech - Navigated to cart.
+2026-11-20 01:07:16,053 INFO talento_tech - Product name validated.
+2026-11-20 01:07:16,096 INFO talento_tech - Product price validated.
+2026-11-20 01:07:16,096 INFO talento_tech - Cart functionality validated successfully.
+2026-11-20 01:07:20,430 INFO talento_tech - Testing inventory functionality.
+2026-11-20 01:07:21,403 INFO talento_tech - Retrieved 6 products.
+2026-11-20 01:07:21,543 INFO talento_tech - Inventory functionality validated.
+2026-11-20 01:07:25,394 INFO talento_tech - Testing login functionality.
+2026-11-20 01:07:25,394 INFO talento_tech - Testing login with username: standard_user
+2026-11-20 01:07:26,420 INFO talento_tech - Login successful.
+2026-11-20 01:07:26,484 INFO talento_tech - Products title validated.
+2026-11-20 01:07:26,484 INFO talento_tech - Login test completed successfully.
+2026-11-20 01:07:30,424 INFO talento_tech - Testing login functionality.
+2026-11-20 01:07:30,426 INFO talento_tech - Testing login with username: admin
+2026-11-20 01:07:31,423 INFO talento_tech - Login failed as expected.
+2026-11-20 01:07:35,304 INFO talento_tech - Testing login functionality.
+2026-11-20 01:07:35,304 INFO talento_tech - Testing login with username: jose
+2026-11-20 01:07:36,482 INFO talento_tech - Login failed as expected.

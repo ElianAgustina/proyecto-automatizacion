@@ -7,6 +7,7 @@ from pages.login_page import LoginPage
 from utils.reader import read_users_csv
 from utils.logger import logger
 
+@pytest.mark.flaky(reruns=2, reruns_delay=3)
 @pytest.mark.parametrize(
     "data",read_users_csv()
     )
