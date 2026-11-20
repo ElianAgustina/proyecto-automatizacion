@@ -12,6 +12,8 @@ import base64
 # esto es un fixture de pytest que se encarga de crear y cerrar el navegador antes y después de cada prueba
 @pytest.fixture
 def driver():
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless") # esto permite que el navegador se ejecute en segundo
     driver = webdriver.Chrome()
     driver.implicitly_wait(10)
     yield driver # el yield permite que la prueba se ejecute y luego se cierre el navegador
