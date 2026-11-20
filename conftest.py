@@ -35,7 +35,7 @@ def pytest_runtest_makereport(item, call):
     outcome = yield
     report = outcome.get_result()
 
-    if report.when == "call" and report.failed:
+    if report.when == call and report.failed:
         driver = item.funcargs.get("driver")
         file = pathlib.Path("reports/screenshots")
         file.mkdir(parents=True, exist_ok=True)

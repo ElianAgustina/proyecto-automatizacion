@@ -12,35 +12,40 @@ from utils.reader import read_products_json
 from utils.logger import logger
 
 def test_cart(driver):
-    logger.info("Testing cart functionality.")
-    login_page = LoginPage(driver)
-    inventory_page = InventoryPage(driver)
-    cart_page = CartPage(driver)
+    try:
+        logger.info("Testing cart functionality.")
+        login_page = LoginPage(driver)
+        inventory_page = InventoryPage(driver)
+        cart_page = CartPage(driver)
 
-    # Abrir la página de inicio de sesión
-    driver.get("https://www.saucedemo.com/")
-    login_page.login("standard_user", "secret_sauce")
+        # Abrir la página de inicio de sesión
+        driver.get("https://www.saucedemo.com/")
+        login_page.login("standard_user", "secret_sauce")
 
-    # Obtener el primer producto del archivo JSON
-    products = read_products_json()[0] 
+        # Obtener el primer producto del archivo JSON
+        products = read_products_json()[0] 
 
-    # Agregar el producto al carrito desde el json
-    inventory_page.add_product_to_cart(products["name"])
+        # Agregar el producto al carrito desde el json
+        inventory_page.add_product_to_cart(products["name"])
 
-    assert inventory_page.count_products().text == "1"
+        assert inventory_page.count_products().text == "1"
 
-    logger.info("Product added to cart.")
+        logger.info("Product added to cart.")
 
-    # Ir al carrito
-    inventory_page.go_to_cart()
+        # Ir al carrito
+        inventory_page.go_to_cart()
 
-    logger.info("Navigated to cart.")
+        logger.info("Navigated to cart.")
 
-    # Verificar que el producto agregado al carrito sea el mismo que se obtuvo del archivo JSON
-    assert cart_page.get_name_product() == products["name"]
+        # Verificar que el producto agregado al carrito sea el mismo que se obtuvo del archivo JSON
+        assert cart_page.get_name_product() == products["name"]
 
-    logger.info("Product name validated.")
+        logger.info("Product name validated.")
 
-    #validar que el precio del producto en el carrito sea el mismo que se obtuvo del archivo JSON
-    assert cart_page.get_price_product() == products["price"]
-    logger.info("Product price validated.")
+        #validar que el precio del producto en el carrito sea el mismo que se obtuvo del archivo JSON
+        assert cart_page.get_price_product() == products["price"]
+        logger.info("Product price validated.")
+        logger.info("Cart functionality validated successfully.")
+    except Exception:
+        logger.exception(f"An error occurred during the cart test")
+        raise

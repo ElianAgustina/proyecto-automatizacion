@@ -12,6 +12,7 @@ from utils.logger import logger
     )
 def test_login(driver, data):
     try:
+        logger.info("Testing login functionality.")
         username = data["username"]
         password = data["password"]
 
@@ -39,6 +40,7 @@ def test_login(driver, data):
             title = driver.find_element(By.CSS_SELECTOR, "[data-test='title']")
             assert title.text == "Products"
             logger.info("Products title validated.")
+            logger.info("Login test completed successfully.")
         elif data["type_username"] == "user_error":
             # Validar que el inicio de sesión falló y se muestra un mensaje de error
             error_message = login_page.get_error_message()
