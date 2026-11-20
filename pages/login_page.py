@@ -10,6 +10,9 @@ class LoginPage:
         self.driver = driver
         self.wait = WebDriverWait(driver, 10)  # Espera explícita de 10 segundos
 
+    def open_page(self):
+        self.driver.get("https://www.saucedemo.com/")
+
     # definir las acciones que se pueden realizar en la página de inicio
     def enter_username(self, username):
         self.wait.until(EC.presence_of_element_located((By.ID, "user-name"))).send_keys(username)
