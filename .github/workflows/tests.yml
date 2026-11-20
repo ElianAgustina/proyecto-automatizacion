@@ -1,20 +1,22 @@
-jobs:
+name: Tests automation
+
 on:
   push:
     branches:
       - main
+
 jobs:
   run-tests:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download Repository
+      - name: Download repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.14'
+          python-version: "3.13"
 
       - name: Install dependencies
         run: |
@@ -22,10 +24,10 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run tests
-        run: pytest 
+        run: pytest
 
-      - name: Upload Test Results
+      - name: Upload test results
         uses: actions/upload-artifact@v4
         with:
           name: test-results
-          path: report.html
+          path: reports/report.html
