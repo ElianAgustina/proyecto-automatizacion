@@ -14,7 +14,8 @@ import base64
 def driver():
     options = webdriver.ChromeOptions()
     options.add_argument("--headless=new") # esto permite que el navegador se ejecute en segundo
-    driver = webdriver.Chrome()
+    options.add_argument("--incognito")
+    driver = webdriver.Chrome(options=options)
     driver.implicitly_wait(10)
     yield driver # el yield permite que la prueba se ejecute y luego se cierre el navegador
     driver.quit()
