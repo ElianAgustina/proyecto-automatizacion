@@ -1,5 +1,5 @@
 import requests
-
+import pytest_check as check
 from utils.logger import logger
 def test_get_user(base_url, headers):
 
@@ -26,17 +26,27 @@ def test_get_user(base_url, headers):
         assert isinstance(data, dict) # Verificar que 'data' sea un diccionario
         assert 'data' in data 
         logger.info(f"Retrieved user data: {data['data']}")
-    # Verificar que 'data' sea una lista
+        # Verificar que 'data' sea una lista
         assert isinstance(data["data"],dict)
 
-        assert 'id' in data["data"]
-        assert 'email' in data["data"]
-        assert 'first_name' in data["data"]
-        assert 'last_name' in data["data"]
+        #assert 'id' in data["data"]
+        check.is_in('id', data["data"])
+        
+        #assert 'email' in data["data"]
+        check.is_in('email', data["data"])
+
+        #assert 'first_name' in data["data"]
+        check.is_in('first_name', data["data"])
+        
+        #assert 'last_name' in data["data"]
+        check.is_in('last_name', data["data"])
 
         # 4to contenido
-        assert data["data"]["id"] == 2
-        assert data["data"]["email"] == "janet.weaver@reqres.in"
+       # assert data["data"]["id"] == 2
+        check.equal(data["data"]["id"], 2)
+        
+        #assert data["data"]["email"] == "janet.weaver@reqres.in"
+        check.equal(data["data"]["email"], "janet.weaver@reqres.in")
 
         # NIVEL 5 : TIEMPO DE RESPUESTA
         assert response.elapsed.total_seconds() < 2  # Verificar que el tiempo de respuesta
@@ -74,16 +84,23 @@ def test_create_user(base_url, headers):
 
         # NIVEL 3: ESTRUCTURA
         data = response.json()
-        assert "email" in data
-        assert "first_name" in data
-        assert "last_name" in data
-        assert "id" in data
+        #assert "email" in data
+        check.is_in("email", data)
+        #assert "first_name" in data
+        check.is_in("first_name", data)
+        #assert "last_name" in data
+        check.is_in("last_name", data)
+        #assert "id" in data
+        check.is_in("id", data)
         logger.info(f"User created with ID: {data['id']}")
 
         # NIVEL 4: Validar el contenido de los datos
-        assert data["email"] == new_user["email"]
-        assert data["first_name"] == new_user["first_name"]
-        assert data["last_name"] == new_user["last_name"]
+        #assert data["email"] == new_user["email"]
+        check.equal(data["email"], new_user["email"])
+        #assert data["first_name"] == new_user["first_name"]
+        check.equal(data["first_name"], new_user["first_name"])
+        #assert data["last_name"] == new_user["last_name"]
+        check.equal(data["last_name"], new_user["last_name"])
         logger.info(f"User data validated: {data['first_name']} {data['last_name']} - {data['email']}")
 
         # NIVEL 5 : TIEMPO DE RESPUESTA

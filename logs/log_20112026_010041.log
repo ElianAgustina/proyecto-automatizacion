@@ -1,0 +1,9 @@
+2026-11-20 01:00:41,226 INFO talento_tech - Testing GET user functionality.
+2026-11-20 01:00:41,557 INFO talento_tech - Retrieved user data: {'id': 2, 'email': 'janet.weaver@reqres.in', 'first_name': 'Janet', 'last_name': 'Weaver', 'avatar': 'https://reqres.in/img/faces/2-image.jpg'}
+2026-11-20 01:00:41,558 INFO talento_tech - GET user test completed successfully.
+2026-11-20 01:00:41,564 INFO talento_tech - Testing create user functionality.
+2026-11-20 01:00:41,778 INFO talento_tech - User created with ID: 43
+2026-11-20 01:00:41,778 INFO talento_tech - User data validated: Felipe Carillanca - felipe.carillanca@reqres.in
+2026-11-20 01:00:41,779 INFO talento_tech - Create user test completed successfully.
+2026-11-20 01:00:41,784 INFO talento_tech - Testing delete user functionality.
+2026-11-20 01:00:41,962 INFO talento_tech - User with ID 1 deleted successfully.
